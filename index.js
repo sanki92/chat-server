@@ -1,7 +1,8 @@
 //  node server which will handle socket.io connections
+
 const io = require('socket.io')(process.env.PORT || 8000)
 const users= {};
-
+console.log("WORKING")
 io.on('connection', socket =>{
     socket.on('new-user-joined', name =>{
         users[socket.id]=name;
@@ -15,3 +16,4 @@ io.on('connection', socket =>{
         delete users[socket.id];
     })
 })
+
