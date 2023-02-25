@@ -5,8 +5,8 @@ const users= {};
 console.log("WORKING")
 io.on('connection', socket =>{
     socket.on('new-user-joined', name =>{
-        users[socket.id]=name;
         socket.broadcast.emit('user-joined', name);
+        users[socket.id]=name;
     });
     socket.on('send', message=>{
         socket.broadcast.emit('receive',{message:message, name:users[socket.id]})
@@ -16,4 +16,3 @@ io.on('connection', socket =>{
         delete users[socket.id];
     })
 })
-
